@@ -20,6 +20,21 @@ export default function RestaurantDetailScreen ({ navigation, route }) {
     fetchRestaurantDetail()
   }, [route])
 
+  const AnimatedText = () => {
+    const [color, setColor] = useState('blue')
+
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setColor((prevColor) => (prevColor === 'black' ? 'blue' : 'black'))
+      }, 750) // Change color every x milliseconds
+
+      return () => clearInterval(interval) // Clean up the interval when the component unmounts
+    }, [])
+
+    return <TextRegular style={[styles.text, { color, fontSize: 20, fontWeight: 'bold', marginTop: 10, marginBottom: 10 }]}>
+      {restaurant.messageToFans}</TextRegular>
+  }
+
   const renderHeader = () => {
     return (
       <View>
@@ -31,7 +46,9 @@ export default function RestaurantDetailScreen ({ navigation, route }) {
             <TextRegular textStyle={styles.description}>{restaurant.restaurantCategory ? restaurant.restaurantCategory.name : ''}</TextRegular>
           </View>
         </ImageBackground>
+        <AnimatedText>
 
+        </AnimatedText>
         <Pressable
           onPress={() => navigation.navigate('CreateProductScreen', { id: restaurant.id })
           }
@@ -50,6 +67,7 @@ export default function RestaurantDetailScreen ({ navigation, route }) {
             </TextRegular>
           </View>
         </Pressable>
+
       </View>
     )
   }

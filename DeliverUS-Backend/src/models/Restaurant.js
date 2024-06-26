@@ -36,6 +36,10 @@ const loadModel = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.STRING
     },
+    messageToFans: {
+      type: DataTypes.STRING
+
+    },
     postalCode: {
       allowNull: false,
       type: DataTypes.STRING
